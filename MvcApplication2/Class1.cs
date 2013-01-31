@@ -15,7 +15,7 @@ namespace MvcApplication2
     public static Database1Entities context = new Database1Entities();
     public static void test()
     {
-      var x= context.table1.Filter<table1>(new { stringData="brian", intData= 40});
+      var x= context.table1.Filter<table1>(new { stringData="brian", intData= 521});
       int l = x.Count();
 
 
@@ -80,7 +80,7 @@ namespace MvcApplication2
 
     private static ConcurrentDictionary<Type, List<PropertyInfo>> cachedPropertyDict  = new ConcurrentDictionary<Type,List<PropertyInfo>>();
 
-    public static IQueryable<T> Filter<T>(this IQueryable<T> aQuery, object aFilter, FilterTypes aFilterType=FilterTypes.Equals)
+    public static IQueryable<T> Filter<T>(this IQueryable<T> aQuery, object aFilter, FilterTypes aFilterType=FilterTypes.Equals, bool ignoreNulls=false)
     {
       Type varType = typeof(T);
       if (!cachedPropertyDict.ContainsKey(typeof(T)))
@@ -90,6 +90,8 @@ namespace MvcApplication2
 	    {
         if (!cachedPropertyDict[varType].Any(x => x.Name == item.Name)) continue;
         object val = item.GetValue(aFilter);
+        if (val==null)continue;
+          
         Type valType = val.GetType();
         Expression fVal = Expression.Constant(val);
         
