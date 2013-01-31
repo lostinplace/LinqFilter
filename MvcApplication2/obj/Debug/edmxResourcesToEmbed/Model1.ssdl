@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="table1" EntityType="Database1Model.Store.table1" store:Type="Tables" />
+  </EntityContainer>
+  <EntityType Name="table1">
+    <Key>
+      <PropertyRef Name="key" />
+    </Key>
+    <Property Name="key" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="intData" Type="int" />
+    <Property Name="stringData" Type="nvarchar" MaxLength="100" />
+    <Property Name="datetimeData" Type="datetime" />
+  </EntityType>
+</Schema>
